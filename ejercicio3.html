@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h2>
+                Resultado: <span class="resultado"></span>
+            </h2>
+            <div id="formularioValores">
+                <div >
+                    <div>
+                        <label for="">Valor 1</label>
+                        <input id="valor1" type="text" >
+                    </div>
+                    <div>
+                        <label for="">Valor 2</label>
+                        <input id="valor2" type="text">
+                    </div>
+                    <div style="display: flex">
+                        <button id="btn-sumar" type="button">
+                            Sumar
+                        </button>
+                        <button id="btn-restar" type="button">
+                            Restar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let valor1 = document.getElementById("valor1");
+        let valor2 = document.getElementById("valor2");
+        let resultado = document.querySelector(".resultado");
+        let btnSumar = document.getElementById("btn-sumar");
+        let btnRestar = document.getElementById("btn-restar");
+
+        function suma(valor1, valor2){
+            let resultado = valor1 + valor2;
+            return resultado;
+        }
+
+        function resta(valor1, valor2){
+            let resultado;
+            if(valor2 > valor1){
+                resultado = 0;
+            }else{
+                resultado = valor1 - valor2;
+            }
+            return resultado;
+        }
+
+        btnSumar.addEventListener("click", function() {
+            resultado.innerText = suma(Number(valor1.value), Number(valor2.value));
+        })
+
+        btnRestar.addEventListener("click", function(){
+            resultado.innerText = resta(Number(valor1.value), Number(valor2.value));
+        })
+
+
+    </script>
+</body>
+
+</html>

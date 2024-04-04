@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <div>
+        <div style="width: 40%;margin: 0 auto">
+            <h2>
+                Escríbenos !!!
+            </h2>
+            <div class="resultado" style="color:green;font-style: italic">
+            </div>
+            <form id="formulario">
+                <div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Nombre completo
+                        </label>
+                        <input id="nombre" type="text">
+                        <p class="errorNombre" style="color:red;font-style: italic;"></p>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Asunto
+                        </label>
+                        <input id="asunto" type="text">
+                        <p class="errorAsunto" style="color:red;font-style: italic;"></p>
+                    </div>
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                    <label>
+                        Mensaje
+                    </label>
+                    <textarea id="mensaje"></textarea>
+                    <p class="errorMensaje" style="color:red;font-style: italic;"></p>
+                </div>
+                <div>
+                    <button id="botton" type="submit">
+                        Envíar mensaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        let formularioMensaje = document.getElementById("formulario");
+
+        formularioMensaje.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+
+            let mensajeExito = document.querySelector(".resultado");
+
+            let nombreFormulario = document.getElementById("nombre");
+            let mensajeErrorNombre = document.querySelector(".errorNombre");
+            let datoNombreFormulario = nombreFormulario.value;
+
+            let asuntoFormulario = document.getElementById("asunto");
+            let mensajeErrorAsunto = document.querySelector(".errorAsunto");
+            let datoAsuntoFormulario = asuntoFormulario.value;
+
+            let mensajeFormulario = document.getElementById("mensaje");
+            let mensajeErrorMensaje = document.querySelector(".errorMensaje");
+            let datoMensajeFormulario = mensajeFormulario.value;
+
+            let flagFormulario = true;
+
+            const patronNombre = /^[a-z\sñáéíóúü'-]+$/i
+
+            if (patronNombre.test(datoNombreFormulario)) {
+                mensajeErrorNombre.innerText = ""
+            } else {
+                mensajeErrorNombre.innerText = "Nombre es requerido"
+                flagFormulario = false;
+            }
+            if (!datoAsuntoFormulario) {
+                mensajeErrorAsunto.innerText = "Asunto es requerido"
+                flagFormulario = false;
+
+            } else {
+                mensajeErrorAsunto.innerText = ""
+            }
+            if (!datoMensajeFormulario) {
+                mensajeErrorMensaje.innerText = "Mensaje es requerido"
+                flagFormulario = false;
+            } else {
+                mensajeErrorMensaje.innerText = ""
+            }
+
+            if (flagFormulario) {
+                mensajeExito.innerText = "Mensaje enviado con exito"
+                formularioMensaje.reset();
+            }else{
+                mensajeExito.innerText = ""
+            }
+        })
+    </script>
+</body>
+
+</html>
